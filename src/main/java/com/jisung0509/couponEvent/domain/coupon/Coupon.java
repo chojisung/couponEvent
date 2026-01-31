@@ -5,12 +5,17 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
 @Entity
+@Table(name = "coupon")
 @Getter
+@NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Coupon {
 
@@ -20,4 +25,13 @@ public class Coupon {
 
   @Column(nullable = false)
   int stock;
+
+  public void decreaseStock() {
+    this.stock--;
+  }
+
+  @Builder
+  public Coupon(int stock) {
+    this.stock = stock;
+  }
 }
