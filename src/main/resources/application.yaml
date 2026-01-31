@@ -1,3 +1,28 @@
 spring:
-  application:
-    name: couponEvent
+  datasource:
+    # H2 데이터베이스는 기본적으로 메모리(jdbc:h2:mem:)에 띄워집니다.
+    # testdb는 데이터베이스 이름입니다.
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: # 비밀번호는 없습니다 (비워둠)
+
+  # H2 콘솔(웹 화면)을 활성화하는 설정입니다.
+  h2:
+    console:
+      enabled: true
+      # 접속 경로: localhost:8080/h2-console 이 접속 가능하도록 설정
+      path: /h2-console
+
+  # JPA 관련 설정
+  jpa:
+    hibernate:
+      # (중요) 'create': 앱 실행할 때마다 테이블 지우고 새로 만듭니다.
+      #         데이터가 날아가는 게 싫으면 'update'로 바꾸세요.
+      #         개발 중에는 'create'가 편합니다.
+      ddl-auto: create
+    # (중요) 쿼리를 실행할 때 콘솔에 SQL 로그를 보여줍니다. ("왜 에러가 났지?" 할 때 유용함)
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true # SQL 로그를 예쁘게 포맷팅해서 보여줍니다.
