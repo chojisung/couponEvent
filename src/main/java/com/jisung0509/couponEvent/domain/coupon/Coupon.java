@@ -6,6 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.Version;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -25,6 +26,9 @@ public class Coupon {
 
   @Column(nullable = false)
   int stock;
+
+  @Version
+  Long version;
 
   public void decreaseStock() {
     this.stock--;
